@@ -13,6 +13,7 @@ avg_t_instep= sum(t_instep)/numel(t_instep); %avg time
 avg_v_vertical_instep= (0.5*-9.81*(avg_t_instep)^2)/avg_t_instep;
 speed_instep= sqrt((avg_v_horizontal_instep)^2+(avg_v_vertical_instep)^2);
 %collision time is estimated as 0.1 seconds
+%impulse equation: change in momentum(mass*velocity)=Force*collision time
 collision_time= 0.1
 F_instep= (m*speed_instep)/collision_time
 %% Sidestep:
