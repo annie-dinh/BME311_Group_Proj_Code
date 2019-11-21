@@ -52,3 +52,25 @@ movie(hf, mov, 1, video.FrameRate);
 %  v= VideoReader('IMG_1056.mp4');
 % numFrames = ceil(v.Framerate*v.Duration);
 
+
+
+
+%% Code Based off of Video Posted on BB
+% Create .jpg files of all frames of video (240 frames total)
+a = VideoReader('IMG_1056.mp4');
+for img  = 1:a.NumberOfFrames
+    filename = strcat('frame', num2str(img), '.jpg');
+    b = read(a, img);
+    imwrite(b, filename)
+end
+
+%% Frame Analysis
+% Overlay frames 173 & 201 (ball @ rest -> first bounce) into 1 picture
+I_rest = imread('frame173.jpg');
+I_bounce = imread('frame201.jpg');
+I_overlay = imfuse(I_rest, I_bounce); % Overlay frames into composite
+imagesc(I_overlay) % Display composite
+ball_pts = ginput(2); % Manually input points for ball's locations
+
+% Ball is located @ following coords for @ rest & first bounce:
+% [1581.79032258065,550.674966352625; 921.145161290323,540.500000000000]
